@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from functools import update_wrapper
 import re
 
@@ -109,7 +112,8 @@ def test():
     assert json_parse('"hello"') == (['value', ['string', '"hello"']], '')
     assert json_parse('"He\/o\n"') == (['value', ['string', '"He\/o\n"']], '')
     assert json_parse('"\u112A\uFFFFHexadecimal"') == (['value', ['string', '"\\u112A\\uFFFFHexadecimal"']], '')
-    
+    assert json_parse('"暴徒生活"') == (['value', ['string', '"暴徒生活"']], '') # should allow any unicode characters
+
     # Lists and objects
     assert json_parse('["a", "b", "c", "\n"]') == (
                         ['value', ['array', '[', 
